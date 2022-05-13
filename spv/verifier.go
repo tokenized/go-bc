@@ -3,10 +3,10 @@ package spv
 import (
 	"context"
 
-	"github.com/libsv/go-bt/v2"
 	"github.com/pkg/errors"
+	"github.com/tokenized/go-bt"
 
-	"github.com/libsv/go-bc"
+	"github.com/tokenized/go-bc"
 )
 
 type verifyOptions struct {

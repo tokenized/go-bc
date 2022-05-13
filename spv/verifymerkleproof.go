@@ -6,9 +6,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/libsv/go-bt/v2"
+	"github.com/tokenized/go-bt"
 
-	"github.com/libsv/go-bc"
+	"github.com/tokenized/go-bc"
 )
 
 const (

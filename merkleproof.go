@@ -4,6 +4,8 @@ import (
 	"encoding/hex"
 
 	"github.com/libsv/go-bt/v2"
+
+	"github.com/pkg/errors"
 )
 
 // A MerkleProof is a structure that proves inclusion of a
@@ -30,7 +32,7 @@ type MerkleProof struct {
 // target: 			byte[32 or 80], //determined by flag bits 1 and 2
 // nodeCount: 	varint,
 // nodes: 			node[]
-func (mp *MerkleProof) Bytes() ([]byte, error) {
+func (mp MerkleProof) Bytes() ([]byte, error) {
 	index := bt.VarInt(mp.Index)
 
 	txOrID, err := hex.DecodeString(mp.TxOrID)
@@ -94,4 +96,14 @@ func (mp *MerkleProof) Bytes() ([]byte, error) {
 	bytes = append(bytes, nodes...)
 
 	return bytes, nil
+}
+
+func (mp MerkleProof) MarshalBinary() ([]byte, error) {
+	return mp.Bytes()
+}
+
+// UnmarshalBinary implements the encoding.BinaryUnmarshaler interface and reads a byte slice into
+// the object.
+func (mp *MerkleProof) UnmarshalBinary(b []byte) error {
+	return errors.New("Not implemented")
 }
